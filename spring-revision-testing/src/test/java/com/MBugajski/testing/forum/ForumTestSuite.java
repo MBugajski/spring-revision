@@ -26,7 +26,7 @@ public class ForumTestSuite {
         System.out.println("Test Suite: end");
     }
     @Test
-    public void TestCaseUsername(){
+    public void testCaseUsername(){
         //Given
         SimpleUser simpleUser = new SimpleUser("theForumUser", "John Doe");
         //When
@@ -36,7 +36,7 @@ public class ForumTestSuite {
         Assert.assertEquals("theForumUser", result);
     }
     @Test
-    public void TestCaseRealName(){
+    public void testCaseRealName(){
         //Given
         SimpleUser simpleUser = new SimpleUser("theForumUser", "John Doe");
         //When
