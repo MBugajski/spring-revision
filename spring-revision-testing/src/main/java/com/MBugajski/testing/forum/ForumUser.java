@@ -15,40 +15,52 @@ public class ForumUser {
     }
 
     public void addPost(String author, String postBody){
-        //do nothing
+        posts.add(new ForumPost(postBody,author));
     }
 
     public void addComment (ForumPost thePost, String author, String commentBody){
-        //do nothing
+        comments.add(new ForumComment(thePost, commentBody, author));
     }
 
     public int getPostsQuantity(){
-        //temp return
-        return 100;
+        return posts.size();
     }
 
     public int getCommentsQuantity(){
-        //temp return
-        return 100;
+        return comments.size();
     }
 
     public ForumPost getPost (int postNumber){
-        //returning null means operation was unsuccessful
-        return null;
+        ForumPost forumPost = null;
+        if (postNumber >= 0 && postNumber < posts.size()) {
+            forumPost = posts.get(postNumber);
+        }
+        return forumPost;
     }
     public ForumComment getComment (int commentNumber){
-        //returning null means operation was unsuccessful
-        return null;
+        ForumComment forumComment = null;
+        if (commentNumber >= 0 && commentNumber < comments.size()){
+            forumComment = comments.get(commentNumber);
+        }
+        return forumComment;
     }
 
     public boolean removePost (ForumPost thePost){
-        //temp return
-        return true;
+        if (posts.contains(thePost)){
+            posts.remove(thePost);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean removeComment (ForumComment theComment){
-        //temp return
-        return true;
+        if (comments.contains(theComment)){
+            comments.remove(theComment);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public String getName() {
