@@ -13,11 +13,12 @@ public class ShapeCollector {
         //no implementation
     }
 
+    public int getCollectionSize(){
+        return 100;
+    }
+
     public Shape getFigure(int i) {
         return null;
     }
 
-    public void showFigures() {
-        //no implementation
-    }
 }
