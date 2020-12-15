@@ -6,19 +6,27 @@ public class ShapeCollector {
     ArrayList<Shape> shapes = new ArrayList<>();
 
     public void addFigure(Shape shape) {
-        //no implementation
+        shapes.add(shape);
     }
 
-    public void removeFigure(Shape shape) {
-        //no implementation
+    public boolean removeFigure(Shape shape) {
+        if (shapes.contains(shape)) {
+            shapes.remove(shape);
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public int getCollectionSize(){
-        return 100;
+    public int getCollectionSize() {
+        return shapes.size();
     }
 
     public Shape getFigure(int i) {
-        return null;
+        Shape shape = null;
+        if (i >= 0 && i <= shapes.size()) {
+            shape = shapes.get(i);
+        };
+        return shape;
     }
-
 }

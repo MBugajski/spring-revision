@@ -9,7 +9,7 @@ public class ShapeCollectorTestSuite {
         //Given
         ShapeCollector shapeCollector = new ShapeCollector();
         //When
-        shapeCollector.addFigure(new Triangle(3, 4));
+        shapeCollector.addFigure(new Triangle(3.0, 4.0));
         //Then
         Assert.assertEquals(1, shapeCollector.getCollectionSize());
     }
@@ -17,7 +17,7 @@ public class ShapeCollectorTestSuite {
     public void testRemoveFigure(){
         //Given
         ShapeCollector shapeCollector = new ShapeCollector();
-        Shape shape = new Square(3);
+        Shape shape = new Square(3.0);
         shapeCollector.addFigure(shape);
         //When
         boolean result = shapeCollector.removeFigure(shape);
@@ -29,7 +29,7 @@ public class ShapeCollectorTestSuite {
     public void testRemoveFigureNotExisting(){
         //Given
         ShapeCollector shapeCollector = new ShapeCollector();
-        Shape shape = new Square(3));
+        Shape shape = new Square(3.0);
         //When
         boolean result = shapeCollector.removeFigure(shape);
         //Then
@@ -40,7 +40,7 @@ public class ShapeCollectorTestSuite {
     public void testGetFigure(){
         //Given
         ShapeCollector shapeCollector = new ShapeCollector();
-        Shape shape = new Circle(3);
+        Shape shape = new Circle(3.0);
         //When
         shapeCollector.addFigure(shape);
         //Then
