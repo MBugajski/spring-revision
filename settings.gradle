@@ -1,3 +1,4 @@
 rootProject.name = 'spring-revision'
 include 'spring-revision-testing'
+include 'spring-revision-stream'
 
