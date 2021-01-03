@@ -3,10 +3,13 @@ package com.MBugajski.stream;
 import com.MBugajski.stream.beautifier.PoemBeautifier;
 import com.MBugajski.stream.book.Book;
 import com.MBugajski.stream.book.BookDirectory;
+import com.MBugajski.stream.forumuser.Forum;
+import com.MBugajski.stream.forumuser.ForumUser;
 import com.MBugajski.stream.lambda.ExpressionExecutor;
 import com.MBugajski.stream.person.People;
 import com.MBugajski.stream.reference.FunctionalCalculator;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -65,6 +68,18 @@ public class StreamMain {
                 .collect(Collectors.joining(",\n", "<<", ">>"));
 
         System.out.println(theResultStringOfBooks);
+
+        Forum theForum = new Forum();
+        Map<Integer, ForumUser> theResultListOfUsers = theForum.getUserList().stream()
+                .filter(user -> user.getSex() == 'M')
+                .filter(user -> user.getBirthday().isBefore(LocalDate.now().minusYears(20)))
+                .filter(user -> user.getPostCount() >= 1)
+                .collect(Collectors.toMap(ForumUser::getUserId, user-> user));
+
+        System.out.println("# elements: " + theResultListOfUsers.size());
+        theResultListOfUsers.entrySet().stream()
+                .map(entry -> entry.getKey() + ": " + entry.getValue())
+                .forEach(System.out::println);
     }
 }
 
