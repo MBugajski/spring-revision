@@ -3,13 +3,12 @@ package com.MBugajski.stream.portfolio;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.time.DateTimeException;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class BoardTestSuite {
     public Board prepareTestData() {
@@ -134,8 +133,26 @@ public class BoardTestSuite {
 
         //Then
         Assert.assertEquals(2, longTasks);
+    }
 
+    @Test
+    public void testAddTaskListAverageWorkingOnTask() {
+        //Given
+        Board project = prepareTestData();
 
+        //When
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
+        double averageTimeWorking = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(l -> l.getTasks().stream())
+                .map(t -> DAYS.between(t.getCreated(), LocalDate.now()))
+                .mapToLong(Long::longValue)
+                .average()
+                .getAsDouble();
+
+        //Then
+        Assert.assertEquals(10, averageTimeWorking, 0.001);
     }
 }
 
